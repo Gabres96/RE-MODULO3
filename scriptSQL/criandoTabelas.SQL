@@ -1,10 +1,14 @@
+-- Criando a base de dados
+CREATE DATABASE IF NOT EXISTS "sistema_emprestimo"
+USE "sistema_emprestimo"
+
 -- criando a tabela categoria
-Table Categoria {
+CREATE TABLE IF NOT EXISTS Categoria {
   id INT [pk]
   nome VARCHAR
 }
 -- criando a tabela emprestimo
-Table emprestimo {
+CREATE TABLE IF NOT EXISTS emprestimo {
   id INT [pk]
   livro_id INT [ref: > Livro.id]
   usuario_id INT [ref: > Usuario.id]
@@ -14,7 +18,7 @@ Table emprestimo {
 }
 
 -- criando a tabela livro
-Table livro {
+CREATE TABLE IF NOT EXISTS livro {
   id INT [pk]
   titulo VARCHAR
   autor VARCHAR
@@ -24,7 +28,7 @@ Table livro {
 }
 
 -- criando a tabela usuario
-Table usuario {
+CREATE TABLE IF NOT EXISTS usuario {
   id INT [pk]
   nome VARCHAR
   email VARCHAR
