@@ -1,43 +1,49 @@
--- Criando a base de dados
-CREATE DATABASE IF NOT EXISTS "sistema_emprestimo"
-USE "sistema_emprestimo"
 
--- criando a tabela categoria
-CREATE TABLE IF NOT EXISTS Categoria {
-  id INT [pk]
-  nome VARCHAR
-}
--- criando a tabela emprestimo
-CREATE TABLE IF NOT EXISTS emprestimo {
-  id INT [pk]
-  livro_id INT [ref: > Livro.id]
-  usuario_id INT [ref: > Usuario.id]
-  data_emprestimo DATE
-  data_devolucao DATE
-  status VARCHAR
-}
+--Criando tabela livro
+CREATE TABLE `Livro` (
+  `id` INT PRIMARY KEY,
+  `titulo` VARCHAR,
+  `autor` VARCHAR,
+  `editora` VARCHAR,
+  `ano_publicacao` INT,
+  `categoria_id` INT
+);
+--Criando tabela usuario
+CREATE TABLE `Usuario` (
+  `id` INT PRIMARY KEY,
+  `nome` VARCHAR,
+  `email` VARCHAR,
+  `telefone` VARCHAR
+);
+--Criando tabela emprestimo
+CREATE TABLE `Emprestimo` (
+  `id` INT PRIMARY KEY,
+  `livro_id` INT,
+  `usuario_id` INT,
+  `data_emprestimo` DATE,
+  `data_devolucao` DATE,
+  `status` VARCHAR
+);
+--Criando tabela categoria
+CREATE TABLE `Categoria` (
+  `id` INT PRIMARY KEY,
+  `nome` VARCHAR
+);
+--Criando tabela condicoes_livro
+CREATE TABLE `condicoes_livro` (
+  `condicoes_id` INT PRIMARY KEY,
+  `apto_emprestimo` BOOLEAN,
+  `livro_id` INT,
+  `data_devolucao` DATE
+);
 
--- criando a tabela livro
-CREATE TABLE IF NOT EXISTS livro {
-  id INT [pk]
-  titulo VARCHAR
-  autor VARCHAR
-  editora VARCHAR
-  ano_publicacao INT
-  categoria_id INT [ref: > Categoria.id]
-}
+--adicionanado chaves estrangeiras
+ALTER TABLE `Livro` ADD FOREIGN KEY (`categoria_id`) REFERENCES `Categoria` (`id`);
 
--- criando a tabela usuario
-CREATE TABLE IF NOT EXISTS usuario {
-  id INT [pk]
-  nome VARCHAR
-  email VARCHAR
-  telefone VARCHAR
-}
+ALTER TABLE `Emprestimo` ADD FOREIGN KEY (`livro_id`) REFERENCES `Livro` (`id`);
 
-CREATE TABLE IF NOT EXISTS condicoes_livro {
-  condicoes_id INT [pk]
-  apto_emprestimo BOOLEAN
-  livro_id INT [ref: > Livro.id]
-  data_devolucao DATE [ref: > Emprestimo.id]
-}
+ALTER TABLE `Emprestimo` ADD FOREIGN KEY (`usuario_id`) REFERENCES `Usuario` (`id`);
+
+ALTER TABLE `condicoes_livro` ADD FOREIGN KEY (`livro_id`) REFERENCES `Livro` (`id`);
+
+ALTER TABLE `condicoes_livro` ADD FOREIGN KEY (`data_devolucao`) REFERENCES `Emprestimo` (`id`);
