@@ -23,7 +23,7 @@ INSERT INTO categoria
  VALUES
  ("Mistério")
  
- --Inserindo dados na tabela livro
+--Inserindo dados na tabela livro
  INSERT INTO livro
  (titulo, autor, editora, ano_publicacao)
  VALUES
@@ -44,7 +44,7 @@ INSERT INTO livro
 (titulo, autor, editora, ano_publicacao)
  VALUES ("Assassinato no Expresso Oriente", "Agatha Christie", "L&PM", 1934)
  
-  --Inserindo dados na tabela usuario
+--Inserindo dados na tabela usuario
   INSERT INTO usuario
 (nome, email, telefone)
  VALUES
@@ -70,12 +70,11 @@ INSERT INTO usuario
  VALUES
  ("Pedro Lima", "pedro.lima@example.com", "(61) 98888-1111")
 
-   --Inserindo dados na tabela emprestimo
+--Inserindo dados na tabela emprestimo
 INSERT INTO emprestimo
 (id_livro, is_usuario, data_emprestimo, data_devolucao, status)
  VALUES 
 (1, 3, "2023-07-01", "2023-07-15", "Devolvido")
-
 
 INSERT INTO emprestimo
 (id_livro, is_usuario, data_emprestimo, data_devolucao, status)
@@ -96,3 +95,29 @@ INSERT INTO emprestimo
 (id_livro, is_usuario, data_emprestimo, data_devolucao, status)
  VALUES
  (5, 4, "2023-07-20", "2023-08-03", "Pendente")
+
+--Inserindo dados na tabela emprestimo
+ INSERT INTO condicoes_livro
+(apto_emprestimo, livro_id, data_devolucao)
+VALUES
+("1","2","2023-07-15")
+
+ INSERT INTO condicoes_livro
+(apto_emprestimo, livro_id, data_devolucao)
+VALUES
+("1","2","2023-07-20")
+
+INSERT INTO condicoes_livro
+(apto_emprestimo, livro_id, data_devolucao)
+VALUES
+("1","3","2023-07-24")
+
+INSERT INTO condicoes_livro
+(apto_emprestimo, livro_id, data_devolucao)
+VALUES
+("1","4","2023-08-03")
+
+INSERT INTO condicoes_livro
+(apto_emprestimo, livro_id, data_devolucao)
+VALUES
+("1","5","2023-07-30")
