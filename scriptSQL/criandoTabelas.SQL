@@ -34,3 +34,10 @@ CREATE TABLE IF NOT EXISTS usuario {
   email VARCHAR
   telefone VARCHAR
 }
+
+CREATE TABLE IF NOT EXISTS condicoes_livro {
+  condicoes_id INT [pk]
+  apto_emprestimo BOOLEAN
+  livro_id INT [ref: > Livro.id]
+  data_devolucao DATE [ref: > Emprestimo.id]
+}
